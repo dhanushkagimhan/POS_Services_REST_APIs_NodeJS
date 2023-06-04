@@ -2,6 +2,7 @@ import express from "express";
 import http from "http";
 import mongoose from "mongoose";
 import { config } from "./config/config";
+import customerRoutes from "./routes/Customer";
 
 const router = express();
 
@@ -37,6 +38,9 @@ const startServer = () => {
 
         next();
     })
+
+    // Routers
+    router.use('/customer', customerRoutes);
 
     // Health check
     router.get('/ping', (req, res, next) => res.status(200).json({ message: 'pong' }))
